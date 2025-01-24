@@ -23,14 +23,14 @@
       state: started
       enabled: yes
 
-  - name: connect  to mysql server
+  - name: connect to mysql server
     community.mysql.mysql_info:
       login_user: root
       login_password: "{{ mysql_root_password }}"
       login_host: mysql.daws82.click
-      ignore_errors: true
       register: mysql_info       #to show output
-      
+      ignore_errors: true
+  
   - name: print the output
     ansible.builtin.debug:
       msg: "Mysql_info: {{ mysql_info }}"
