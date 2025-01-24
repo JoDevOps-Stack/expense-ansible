@@ -28,8 +28,8 @@
       login_user: root
       login_password: "{{ mysql_root_password }}"
       login_host: mysql.daws82.click
-      register: mysql_info       #to show output
-      ignore_errors: true
+    register: mysql_info       #to show output
+    ignore_errors: true
   
   - name: print the output
     ansible.builtin.debug:
