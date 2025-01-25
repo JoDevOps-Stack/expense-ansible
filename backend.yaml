@@ -10,8 +10,11 @@
 
   - name: install nodejs
     ansible.builtin.package:
-      name: nodejs
+      name: "{{ item }}"
       state: present
+    loop:
+    - nodejs
+    - mysql
 
   - name: create expense user
     ansible.builtin.user:
@@ -19,7 +22,7 @@
 
   - name: create app directory
     ansible.builtin.file:
-      path: /app   # where we want to create dirrectory
+      path: /app   # where we want to create dirrectory                                             # what is remote machine?
       state: directory
     
   - name: download backend code
@@ -34,8 +37,24 @@
       remote_src: yes
 
   - name: install dependencies
-    community.general.npm:
+    community.general.npm:       #doubt
       path: /app
+
+
+  - name: copy backend service
+    ansible.builtin.copy:
+      src: backend.service    # doubt
+      dst: /etc/systemd/system/backend.service
+
+  - name: import mysql data
+    community.mysql.mysql_db:
+      state: import
+      name: all
+      login_user: root
+      login_password: ExpenseApp@1
+      login_host: mysql.daws82.click
+      target: /app/schema/backend.sql
+ 
 
 
 
