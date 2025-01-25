@@ -40,17 +40,18 @@
     community.general.npm:       
       path: /app
 
-
   - name: copy backend service
     ansible.builtin.copy:
       src: backend.service    
       dest: /etc/systemd/system/backend.service
 
-  - name: install mysql libs
+   - name: install mysql libraries
     ansible.builtin.pip:
-      name: pyMySQL
-      executable: pip3.9     # ansible version
-
+      name: "{{ item }}"
+      executable: pip3.9   #ansible version
+    loop:
+    - cryptography
+    - pymysql                
 
   - name: import mysql data
     community.mysql.mysql_db:
