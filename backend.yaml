@@ -37,14 +37,14 @@
       remote_src: yes
 
   - name: install dependencies
-    community.general.npm:       #doubt
+    community.general.npm:       
       path: /app
 
 
   - name: copy backend service
     ansible.builtin.copy:
-      src: backend.service    # doubt
-      dst: /etc/systemd/system/backend.service
+      src: backend.service    
+      dest: /etc/systemd/system/backend.service
 
   - name: import mysql data
     community.mysql.mysql_db:
