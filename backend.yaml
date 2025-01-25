@@ -62,7 +62,7 @@
       login_host: mysql.daws82.click
       target: /app/schema/backend.sql
 
-  - name: daemon reload and restarted service
+  - name: daemon reload and restart service
     ansible.builtin.systemd_service:
     enabled: true
     state: restarted
