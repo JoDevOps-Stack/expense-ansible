@@ -54,7 +54,7 @@
     - pymysql                
 
   - name: import mysql data
-    community.mysql.mysql_db:
+    community.mysql.mysql_db:   # creating schema
       state: import
       name: all
       login_user: root
